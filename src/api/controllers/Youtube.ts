@@ -35,13 +35,13 @@ export class YoutubeController extends ControllerBase {
         const { access_token } = await getTokenOAuthUseCase.execute(code);
     
     
-        res.redirect(`${this.endpoint}/export-subscribe?access_token=${access_token}`);
+        res.redirect(`${this.endpoint}/export-subscribes?access_token=${access_token}`);
       } else {
         res.status(400).send("Error");
       }
     });
     
-    this.router.get("/export-subscribe", async (req, res) => {
+    this.router.get("/export-subscribes", async (req, res) => {
       const accessToken = req.query.access_token as string;
 
       const download = req.query.download as string || req.session.download as string;
